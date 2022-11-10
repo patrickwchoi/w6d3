@@ -18,7 +18,27 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: params
+        # render json: params
+        # params id finds the id number we are giving
+        user = User.find(params[:id])
+        render json: user
+    end
+
+    def update
+        user = User.find(params[:id])
+        user.update!(user_params)
+        render json: user
+    end
+
+    def destroy
+        user = User.find(params[:id])
+        user.destroy
+
+        redirect_to users_url
+    end
+
+    def user_params
+        params.require(:user).permit(:name, :email)
     end
 
 end
