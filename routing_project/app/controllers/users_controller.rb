@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     def create
         # render json: params
-        user = User.new(params.require(:user).permit(:name, :email))
+        user = User.new(user_params)
          # replace the `user_attributes_here` with the actual attribute keys
         # user.save!
         if user.save
@@ -37,8 +37,10 @@ class UsersController < ApplicationController
         redirect_to users_url
     end
 
+    private 
+
     def user_params
-        params.require(:user).permit(:name, :email)
+        params.require(:user).permit(:username)
     end
 
 end
