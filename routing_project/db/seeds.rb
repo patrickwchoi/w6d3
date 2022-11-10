@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
 ActiveRecord::Base.connection.reset_pk_sequence!('artworks')
+ActiveRecord::Base.connection.reset_pk_sequence!('artwork_shares')
 
 darren = User.create!(username: "awesome_person")
 patrick = User.create!(username: "patrickchoi")
