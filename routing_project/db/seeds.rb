@@ -16,3 +16,5 @@ girl_with_pearl = Artwork.create!(title: 'Girl with the Pearl Earrings', image_u
 
 cats = Artwork.create!(title: 'My Cat', image_url: 'www.cat.com', artist_id: 2)
 
+ArtworkShare.create!(artwork_id: 1, viewer_id: 2)
+ArtworkShare.create!(artwork_id: 3, viewer_id: 1)
