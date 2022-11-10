@@ -1,6 +1,14 @@
 class ArtworksController < ApplicationController
   def index
-    artworks = Artwork.all
+    if params[:user_id] #param key is the wildcard from the request
+      artworks = Artwork.joins(:artwork_shares)
+        .where("artist_id = #{params[:user_id]} OR viewer_id = #{params[:user_id]}")
+        .distinct
+      # user = User.find(params[:user_id])
+      # artworks = user.artworks #artworks association
+    else
+      artworks = Artwork.all
+    end
     render json: artworks
   end
 

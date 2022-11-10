@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :users, only: [:create, :destroy, :index, :show, :update]
+  resources :users, only: [:create, :destroy, :index, :show, :update] do
+    resources :artworks, only: [:index] #this makes new index method that lets u grab all artworks of user
+  end
   resources :artworks, only: [:create, :destroy, :index, :show, :update]
   resources :artwork_shares, only: [:create, :destroy, :index, :show]
+
+  
+
 
   # get 'users', to: 'users#index'
   # post 'users', to: 'users#create'
