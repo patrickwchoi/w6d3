@@ -12,8 +12,7 @@
 class Artwork < ApplicationRecord
   belongs_to :user,
   foreign_key: :artist_id,
-  class_name: :User,
-  inverse_of: :artworks
+  class_name: :User
 
   has_many :artwork_shares,
   foreign_key: :artwork_id,
@@ -24,4 +23,8 @@ class Artwork < ApplicationRecord
   through: :artwork_shares,
   source: :viewer
 
+  has_many :comments,
+  foreign_key: :artwork_id,
+  class_name: :Comment,
+  dependent: :destroy
 end

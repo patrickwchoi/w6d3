@@ -14,6 +14,8 @@ class ArtworkShare < ApplicationRecord
     class_name: :Artwork,
     inverse_of: :artwork_shares
 
+    #if through_association references joins table, add inverse_of on belongs_to
+
     belongs_to :viewer,
     foreign_key: :viewer_id,
     class_name: :User,
