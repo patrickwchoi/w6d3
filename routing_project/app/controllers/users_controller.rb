@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
     def index
         # render plain: "I'm in the index action!"
-        users = User.all
+        if params[:username]
+            # users = User.find_by(username: params[:username])
+            users = User.where("username = '#{params[:username]}'")
+            users = User.all if users.empty?
+        else
+            users = User.all
+        end
         render json: users
     end
 
@@ -36,7 +42,7 @@ class UsersController < ApplicationController
         redirect_to users_url
     end
 
-    private 
+    private
     def user_params
         params.require(:user).permit(:username)
     end
